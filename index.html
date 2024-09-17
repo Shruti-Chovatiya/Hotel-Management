@@ -1,0 +1,439 @@
+<?php
+session_start();
+$price = isset($_SESSION['price']) ? $_SESSION['price'] : '';
+$price = isset($_SESSION['deposit']) ? $_SESSION['deposit'] : '';
+?>
+
+<?php echo $price ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="style.css">
+    <title>Hotel Urban Retreat</title>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function (event) {
+            var checkin = new Date(document.getElementById('checkin').value);
+            var checkout = new Date(document.getElementById('checkout').value);
+            var today = new Date();
+
+            // Reset the error message
+            document.getElementById('error-message').textContent = '';
+
+            if (checkin < today || checkout < today) {
+                event.preventDefault(); // Prevent form submission
+                document.getElementById('error-message').textContent = 'Dates cannot be in the past.';
+            } else if (checkout <= checkin) {
+                event.preventDefault(); // Prevent form submission
+                document.getElementById('error-message').textContent = 'Checkout date must be after check-in date.';
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="main head-position">
+            <div class="nav">
+                <ul>
+                    <li style="color: black;"><i class="fa fa-bed ps-2 pe-1" style="padding-right:15px;"></i></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#rooms">Rooms</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#hotels">Hotels</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <a href="register.html" class="btn">Book Now</a>
+            </div>
+            <!-- <div class="wlcm">
+                Welcome!!
+            </div> -->
+        </div>
+    </header>
+    <div class="bg-light" id="home">
+        <div>
+            <div
+                style="background-image: url(./main1.jpg);padding: 100px 0px;background-repeat: no-repeat;width:100%;height:100%;background-size:cover;">
+                <div>
+                    <div class="row m-0">
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="bg-white">
+                                <div
+                                    style="background-color:rgb(252, 101, 64) ; color:white; width:100%;font-size: 25px;">
+                                    <h2><i class="fa fa-bed" style="margin:10px 15px;"></i>
+                                        Hotel Urban Retreat</h2>
+                                </div>
+
+                                <form action="bookroom.php" method="post" id="bookingForm">
+                                    <div>
+                                        <div class="row m-0">
+                                            <div class="col-xl-6">
+                                                <label class="pb-1" for="">Name</label><br>
+                                                <input type="name" name="name" placeholder="Enter your name" required>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <label class="pb-1" for="">Mobile No</label><br>
+                                                <input type="number" name="mobile" placeholder="Enter Mobile-no"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-xl-12">
+                                                <label class="pb-1" for="">Email</label><br>
+                                                <input type="email" name="email" placeholder="abc@gmail.com" required>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-xl-6">
+                                                <label class="pb-1"><i class="fa fa-calendar-o"
+                                                        style="margin-right:5px;"></i>Check
+                                                    in</label><br>
+                                                <input placeholder="DD MM YYYY" name="checkin" type="date" id="checkin"
+                                                    required>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <label class="pb-1"><i class="fa fa-calendar-o"
+                                                        style="margin-right:5px;"></i>Check
+                                                    out</label><br>
+                                                <input placeholder="DD MM YYYY" name="checkout" type="date"
+                                                    id="checkout" required>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-xl-6">
+                                                <label class="pb-1" for=""><i class="fa fa-male"
+                                                        style="margin-right:5px;"></i>Adults</label><br>
+                                                <input type="number" name="adults" required>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <label class="pb-1" for=""><i class="fa fa-child"
+                                                        style="margin-right:5px;"></i>Kids</label><br>
+                                                <input type="number" name="kids" required>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-xl-12">
+                                                <label class="pb-1" for="">Room Type</label>
+                                                <div class="row">
+                                                    <div class="col-xl-4">
+                                                        <div>
+                                                            <input type="radio" id="single-bed" name="room"
+                                                                value="single-bed" class="mr-5" required>
+                                                            <label for="single-bed">Single-bed</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <div>
+                                                            <input type="radio" id="queen-size" name="room"
+                                                                value="queen-size" required>
+                                                            <label for="queen-size">Queen-size</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <div>
+                                                            <input type="radio" id="king-size" name="room"
+                                                                value="king-size" required>
+                                                            <label for="king-size">King-size</label><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-xl-6">
+                                                <label class="pb-1" for="">Payment Method</label><br>
+                                                <div class="row">
+                                                    <div class="col-xl-4">
+                                                        <div>
+                                                            <input type="radio" id="online" name="payment-method"
+                                                                value="online" required>
+                                                            <label for="online">Online</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <div>
+                                                            <input type="radio" id="cash" name="payment-method"
+                                                                value="cash" required>
+                                                            <label for="cash">Cash</label><br>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <div>
+                                                            <input type="radio" id="card" name="payment-method"
+                                                                value="card" required>
+                                                            <label for="card">Card</label><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="col-xl-6">
+                                                <label class="pb-1" for="">Price</label><br>
+                                                <input type="price" name="price" placeholder="0" value="<?php echo $price ?>" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-xl-6">
+                                                <label class="pb-1" for="">Deposit</label><br>
+                                                <input type="deposit" name="deposit" placeholder="Deposit" value="<?php echo $deposit ?>" readonly>
+                                            </div> -->
+                                            <!-- <div class="col-xl-6">
+                                                <label class="pb-1" for="">Booking Status</label><br>
+                                                <input type="number" name="status" placeholder="0">
+                                            </div> -->
+                                        </div>
+                                        <div>
+                                            <button type="submit" name="submit" id="submit" class="searchBtn m-3 text-left "><i
+                                                    class="fa fa-search me-3"></i>
+                                                Book Now</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="rooms" class="margin-head">
+        <div>
+            <div class="row m-0 margin-head">
+                <div style="margin-left: 10px;" class="col-xl-4 mt-5">
+                    <h3>Rooms</h3>
+                    <p>Make yourself at home is our slogan. We offer the best beds in the industry.
+                        Sleep well and rest well.</p>
+                </div>
+            </div>
+            <form action="search.php" method="post">
+                <div class="row m-0">
+                    <div class="col-xl-6">
+                        <div class="row m-0">
+                            <div class="col-xl-6">
+                                <label><i class="fa fa-calendar-o" style="margin-right:5px;"></i>Check in</label><br>
+                                <input placeholder="DD MM YYYY" type="date" name="checkin">
+                            </div>
+                            <div class="col-xl-6">
+                                <label><i class="fa fa-calendar-o" style="margin-right:5px;"></i>Check out</label><br>
+                                <input placeholder="DD MM YYYY" type="date" name="checkout">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="row m-0">
+                            <!-- <div class="col-xl-4">
+                            <label for=""><i class="fa fa-male" style="margin-right:5px;"></i>Adults</label><br>
+                            <input type="number" placeholder="1">
+                        </div>
+                        <div class="col-xl-4">
+                            <label for=""><i class="fa fa-child" style="margin-right:5px;"></i>Kids</label><br>
+                            <input type="number" placeholder="0">
+                        </div> -->
+                            <div class="col-xl-4">
+                                <label> <i class="fa fa-search"></i> Search</label><br>
+                                <button class="search"> Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row m-0" style="margin-left:10px;">
+                <div class="col-xl-4">
+                    <img src="./room_single.jpg" alt="singleroom" style="height:auto; width:100%">
+                    <div style="background-color: white;  padding:20px;">
+                        <h4> Single Room</h4>
+                        <h6 style=" color:lightgray">From $99</h6>
+                        <p>Single bed</p>
+                        <p>15m<sup>2</sup></p>
+                        <p>
+                            <i class=" fa fa-bath"></i>
+                            <i class="fa fa-phone"></i>
+                            <i class="fa fa-wifi"></i>
+                        </p>
+                        <button class="cRoom">Choose Room</button>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <img src="./room_double.jpg" alt="douleroom" style="height:auto; width:100%">
+                    <div style="background-color: white;  padding:20px;"">
+                    <h4> Double Room</h4>
+                    <h6 style=" color:lightgray">From $149</h6>
+                        <p>Queen-size bed</p>
+                        <p>25m<sup>2</sup></p>
+                        <p>
+                            <i class=" fa fa-bath"></i>
+                            <i class="fa fa-phone"></i>
+                            <i class="fa fa-wifi"></i>
+                            <i class="fa fa-tv"></i>
+                        </p>
+                        <button class="cRoom">Choose Room</button>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <img src="./room_deluxe.jpg" alt="deluxeroom" style="height:auto; width:100%">
+                    <div style="background-color: white; padding:20px;">
+                        <h4> Double Room</h4>
+                        <h6 style="color:lightgray">From $199</h6>
+                        <p>King-size bed</p>
+                        <p>40m<sup>2</sup></p>
+                        <p>
+                            <i class="fa fa-bath"></i>
+                            <i class="fa fa-phone"></i>
+                            <i class="fa fa-wifi"></i>
+                            <i class="fa fa-tv"></i>
+                            <i class="fa fa-glass"></i>
+                            <i class="fa fa-cutlery"></i>
+                        </p>
+                        <button class="cRoom">Choose Room</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-0 margin-head" id="about">
+        <div class="col-xl-4 mt-5">
+            <h4> About</h4>
+            <p>Our hotel is one of a kind. It is truely amazing. Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                anim id est laborum
+                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam.</p>
+            <p>
+                We accept:
+                <i class="fa fa-credit-card "></i>
+                <i class="fa fa-cc-mastercard "></i>
+                <i class="fa fa-cc-amex "></i>
+                <i class="fa fa-cc-visa "></i>
+                <i class="fa fa-cc-paypal"></i>
+            </p>
+        </div>
+        <div class="col-xl-8">
+            <img src="map.jpg" alt="map" style="width:100%; height:auto;">
+        </div>
+    </div>
+    <div class="row m-0" style="padding: 10px 0; margin:0 50px;">
+        <div class="col-xl-4">
+            <i class="fa fa-map-marker text-danger"></i>
+            423 Some adr, Chicago, US
+        </div>
+        <div class="col-xl-4">
+            <i class="fa fa-phone text-danger"></i>
+            Phone: +00 151515
+        </div>
+        <div class="col-xl-4">
+            <i class="fa fa-envelope text-danger"></i>
+            Email: mail@mail.com
+        </div>
+    </div>
+    <div class="panel">
+        <h6>
+            <i class="fa fa-info" style="margin-right:30px;"></i>
+            On demand, we can offer playstation, babycall, children care, dog equipment, etc.
+        </h6>
+    </div>
+
+    <div id="hotels" class="row m-0 margin-head">
+        <div style="margin-left: 10px;" class="col-xl-4 mt-5">
+            <h3>Our Hotels</h3>
+            <p>You can fine our hotels anywhare in the world:</p>
+        </div>
+        <div class="row m-0">
+            <div class="col-xl-6 col-lg-12">
+                <div class="row m-0">
+                    <div class="col-xl-12 col-lg-12">
+                        <img src="./cinqueterre.jpg" alt="" style="height: auto;width:100%;">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-xl-3 col-lg-6">
+                <img src="./newyork2.jpg" alt="" style="height: auto;width:100%;">
+
+                <img src="./sanfran.jpg" alt="" style="height: auto;width:100%;" class="mt-3">
+            </div>
+
+            <div class="col-xl-3  col-lg-6 mt-2">
+                <img src="./paris.jpg" alt="" style="height: auto;width:100%;">
+                <img src="./pisa.jpg" alt="" style="height: auto;width:100%;" class="mt-3">
+            </div>
+
+        </div>
+
+        <div class="subscribe mt-5">
+
+            <h3> Get the best offers first! </h3>
+            <p>Join our newsletter.</p>
+            <p>E-mail:
+                <input type="text" style="width:100%;" placeholder="Your E-mail Address ">
+            </p>
+            <button class="subBtn">Subscribe</button>
+        </div>
+    </div>
+    <form action="contact.php" method="post" class="m-4" id="contact">
+        <h2>Contact</h2>
+        <p>If you have any questions, do not hesitate to ask them.</p>
+        <i class="fa fa-map-marker text-danger" style="margin-right: 20px;"></i>
+        423 Some adr, Chicago, US<br>
+        <i class="fa fa-phone text-danger" style="margin-right: 20px;"></i>
+        Phone: +00 151515<br>
+        <i class="fa fa-envelope text-danger" style="margin-right: 20px;"></i>
+        Email: mail@mail.com<br>
+        <div>
+            <input type="text" placeholder="Name" name="name"
+                style="width:100%; padding:10px; border:1px solid lightgray;" class="mt-2">
+            <input type="text" placeholder="Email" name="email"
+                style="width:100%; padding:10px; border:1px solid lightgray;" class="mt-2">
+            <input type="text" placeholder="Message" name="msg"
+                style="width:100%; padding:10px; border:1px solid lightgray;" class="mt-2">
+            <button type="submit" class="sendM mt-2">SEND MESSAGE</button>
+        </div>
+    </form>
+
+    <!-- <div class="m-4" id="contact">
+        <h2>Contact</h2>
+        <p>If you have any questions, do not hesitate to ask them.</p>
+        <i class="fa fa-map-marker text-danger" style="margin-right: 20px;"></i>
+        423 Some adr, Chicago, US<br>
+        <i class="fa fa-phone text-danger" style="margin-right: 20px;"></i>
+        Phone: +00 151515<br>
+        <i class="fa fa-envelope text-danger" style="margin-right: 20px;"></i>
+        Email: mail@mail.com<br>
+        <div>
+            <input type="text" placeholder="Name" name="name" style="width:100%;  padding:10px; border:1px solid lightgray;"
+            class="mt-2">
+            <input type="text" placeholder="Email" name="email" style="width:100%; padding:10px; border:1px solid lightgray;;"
+                class="mt-2">
+            <input type="text" placeholder="Message" name="msg" style="width:100%; padding:10px; border:1px solid lightgray;"
+                class="mt-2">
+            <button type="submit" class="sendM mt-2">SEND MESSAGE</button>
+        </div>
+    </div> -->
+    <div class="footer mt-3 p-4">
+        <h5>Find Us On</h5>
+        <div class="p-3" style="font-size:30px;">
+            <i class="fa fa-facebook-official"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-snapchat"></i>
+            <i class="fa fa-pinterest-p"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-linkedin"></i>
+        </div>
+    </div>
+
+</body>
+
+</html>

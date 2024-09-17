@@ -1,0 +1,266 @@
+* {
+    font-size: 16px;
+    font-family: "Raleway", Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px;
+}
+
+.head-position {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+}
+
+
+.nav>ul {
+    display: flex;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.nav>ul>li {
+    font-size: 20px;
+    margin: 0px;
+    cursor: pointer;
+    float: left;
+    line-height: 1.5;
+    padding: 8px;
+}
+
+.nav>ul>li>a {
+    text-decoration: none;
+    color: black;
+}
+/* .wlcm{
+    font-size: 20px;
+    color: rgb(252, 101, 64);
+    padding-right: 15px;
+} */
+.button>a {
+    background-color:  rgb(252, 101, 64);
+    border: none;
+    padding: 9px;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1.5;
+    margin: 0px;
+}
+.button>button:hover {
+    background-color: darkgray;
+}
+
+.nav>ul>li:hover {
+    background-color: lightgrey;
+    color: black;
+}
+
+.info {
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    transform: translate(0%, -50%);
+    background-color: white;
+    margin: 15px 0;
+}
+.container-head{
+    text-align: left;
+}
+
+.row>div>input {
+    color: rgb(112, 111, 111);
+    padding: 4px;
+    width: 100%;
+
+}
+
+.searchBtn {
+    border: 0px;
+    background-color: rgb(252, 101, 64);
+    color: white;
+    margin: 10px 0;
+    padding: 9px 60px;
+}
+
+.searchBtn:hover {
+    background-color: rgb(240, 93, 56);
+}
+
+.search {
+    width: 100%;
+    margin: 0 0;
+    background-color: black;
+    color: white;
+    padding: 6px 20px;
+    border: 0px;
+}
+
+.search:hover {
+    background-color: lightgray;
+    color: black;
+}
+
+.row {
+    padding: 5px;
+}
+
+.main-cont {
+    margin-top: 50px;
+}
+
+.Rooms {
+    display: flex;
+}
+
+.margin-head {
+    margin-top: 100px;
+}
+
+.cRoom {
+    border: 0px;
+    color: white;
+    background-color: black;
+    width: 100%;
+    padding: 8px 16px;
+}
+
+.cRoom:hover {
+    color: black;
+    background-color: lightgray;
+}
+
+.panel {
+    padding: 30px 30px;
+    background-color: rgb(252, 101, 64);
+}
+
+.panel>h6>i {
+    padding: 10px 20px;
+    background-color: rgb(255, 10, 10);
+
+}
+
+.subscribe {
+    background-color: rgb(119, 119, 119);
+    color: white;
+    padding: 30px 20px;
+    ;
+}
+
+.subscribe:hover {
+    background-color: black;
+}
+
+.subBtn {
+    border: 0px;
+    color: white;
+    background-color: rgb(252, 101, 64);
+    padding: 8px 20px;
+}
+
+.subBtn:hover {
+    color: black;
+    background-color: lightgray;
+}
+
+.sendM {
+    border: 1px solid gray;
+    background-color: black;
+    color: white;
+    padding: 10px 30px;
+    margin-top: 20px;
+}
+
+.sendM:hover {
+    color: black;
+    background-color: lightgray;
+}
+
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+@media screen and (max-width:600px) {
+    .nav {
+        display: none;
+    }
+}
+
+
+/* css for login page */
+
+.margin-center{
+    margin: 100px auto;
+}
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* h2 {
+    margin-bottom: 20px;
+    text-align: left;
+} */
+
+.form-group {
+    margin-bottom: 15px;
+    margin-right: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(252, 101, 64);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: rgb(240, 93, 56);
+}
+
+.message {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.message a {
+    color: rgb(243, 98, 61);
+    text-decoration: none;
+}
+
+.message a:hover {
+    text-decoration: underline;
+}
